@@ -1,0 +1,166 @@
+1.
+
+def calculate_result(first_incourse, second_incourse, attendance, final):
+    """Calculate the total score based on given marks."""
+    return (first_incourse + second_incourse) / 2 + attendance + final
+
+def get_grade(score):
+    """Return the letter grade and grade point based on the score."""
+    grades = [
+        (80, "A+", 4.00), (75, "A", 3.75), (70, "A-", 3.50),
+        (65, "B+", 3.25), (60, "B", 3.00), (55, "B-", 2.75),
+        (50, "C+", 2.50), (45, "C", 2.25), (40, "D", 2.00),
+        (0, "F", 0.00)
+    ]
+    for threshold, letter, point in grades:
+        if score >= threshold:
+            return letter, point
+    return "Invalid", 0.00  # Fallback case
+
+def is_valid(roll, first_incourse, second_incourse, attendance, final):
+    """Validate input values."""
+    return (
+        int(roll) >= 0 and 
+        0 <= first_incourse <= 25 and 0 <= second_incourse <= 25 and 
+        0 <= attendance <= 5 and 0 <= final <= 70
+    )
+
+# Read and process the file
+with open('marks.txt') as file:
+    lines = file.readlines()
+
+print('Roll  Letter Grade  Grade Point')
+print('====  ============  ===========')
+
+for line in lines:
+    parts = line.strip().split()  # Using default split to handle spaces flexibly
+    roll, first_incourse, second_incourse, attendance, final = map(int, parts)
+
+    if not is_valid(roll, first_incourse, second_incourse, attendance, final):
+        print(f"{roll}: Invalid marks detected!")
+        continue
+
+    total_score = calculate_result(first_incourse, second_incourse, attendance, final)
+    letter_grade, grade_point = get_grade(total_score)
+
+    print(f"{roll:<4}  {letter_grade:<12}  {grade_point:.2f}")
+
+
+
+2.
+
+import re
+
+def extract_and_sum_numbers(filename):
+    try:
+        with open(filename, 'r') as file:
+            content = file.read()
+
+        # Regular expression to match integers and floating-point numbers (both positive and negative)
+        pattern = r'-?\d+(?:\.\d+)?'
+        numbers = re.findall(pattern, content)
+
+        # Convert extracted numbers to float
+        numbers = [float(num) for num in numbers]
+
+        # Display results
+        print(f"Extracted numbers: {numbers}")
+        print(f"Sum of all numbers: {sum(numbers)}")
+
+    except FileNotFoundError:
+        print(f"Error: The file '{filename}' was not found.")
+
+# Specify the filename
+filename = 'regex-sum-42.txt'
+extract_and_sum_numbers(filename)
+
+3.
+
+unique_words = set()
+
+file = open('amth.txt')
+for line in file:  # Read line by line
+        line = line.rstrip()
+        words = line.split()
+        for word in words:
+            if word:
+                unique_words.add(word)  # Using a set avoids duplicates automatically
+
+# Convert to a sorted list
+sorted_words = sorted(unique_words)
+
+# Print the result
+print("\n".join(sorted_words))
+
+
+4.
+
+file_name = input("Enter file name : ")
+
+total = 0.0
+count = 0
+
+try:
+    with open(file_name,'r') as file:
+        for line in file:
+            if line.startswith('X-DSPAM-Confidence:'):
+                try:
+                    value = float(line.split(":")[1].strip())
+                    total += value
+                    count += 1
+                except ValueError:
+                    continue
+    if count > 0:
+        print(f"Average spam confidence is : {total / count :.4f}")
+        print(f"This number of this line is {count}")
+    else:
+        print("No Valid value found")
+except FileNotFoundError:
+    print(f"Error: file '{file_name}' not found.")
+except Exception as e:
+    print(f"An error ouccured: {e}")
+
+
+5.
+
+count = 0
+with open("mbox.txt",'r') as file:
+    for line in file:
+        if line.startswith("From"):
+            words = line.split()
+            email = words[1]
+            print(email)
+            count += 1
+print(f"\nTotal count is {count}")
+
+
+6.
+
+
+filename = "mbox.txt"
+
+try:
+    with open(filename, "r") as file:
+        sender_counts = {}
+
+        for line in file:
+            if line.startswith("From "):
+                sender = line.split()[1]  # Extract email
+                sender_counts[sender] = sender_counts.get(sender, 0) + 1
+
+    # Find the most prolific sender
+    max_sender = max(sender_counts, key=sender_counts.get, default=None)
+
+    if max_sender:
+        print(f"Most prolific sender: {max_sender} with {sender_counts[max_sender]} messages")
+    else:
+        print("No emails found in the file.")
+
+except FileNotFoundError:
+    print(f"Error: File '{filename}' not found.")
+
+
+
+
+
+

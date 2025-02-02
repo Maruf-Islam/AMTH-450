@@ -1,5 +1,5 @@
 #file_name = input("Enter file name : ")
-file_name = 'D:\PythonFiles\Assignment_1\mbox.txt'
+file_name = 'D:\PythonFiles\AMTH-450\Assignment_1\mbox.txt'
 total = 0.0
 count = 0
 

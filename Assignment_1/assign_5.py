@@ -1,7 +1,7 @@
 count = 0
 unique_emails = set()  # Set to store unique email addresses
 
-with open("D:\PythonFiles\Assignment_1\mbox-short.txt", 'r') as file:
+with open("D:\PythonFiles\AMTH-450\Assignment_1\mbox-short.txt", 'r') as file:
     for line in file:
         if line.startswith("From "):  # Ensure it only counts "From ", not "From:"
             words = line.split()

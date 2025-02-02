@@ -20,7 +20,7 @@ def extract_and_sum_numbers(filename):
         print(f"Error: The file '{filename}' was not found.")
 
 # Specify the filename
-filename = r'D:\PythonFiles\Assignment_1\regex-sum-42.txt'
+filename = r'D:\PythonFiles\AMTH-450\Assignment_1\regex-sum-42.txt'
 extract_and_sum_numbers(filename)
 
 

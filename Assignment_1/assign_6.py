@@ -1,4 +1,4 @@
-filename = "D:\PythonFiles\Assignment_1\mbox.txt"
+filename = "D:\PythonFiles\AMTH-450\Assignment_1\mbox.txt"
 
 try:
     with open(filename, "r") as file:

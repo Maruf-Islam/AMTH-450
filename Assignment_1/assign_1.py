@@ -25,7 +25,7 @@ def is_valid(roll, first_incourse, second_incourse, attendance, final):
     )
 
 # Read and process the file
-with open('D:\PythonFiles\Assignment_1\marks.txt') as file:
+with open('D:\PythonFiles\AMTH-450\Assignment_1\marks.txt') as file:
     lines = file.readlines()
 
 print('Roll  Letter Grade  Grade Point')

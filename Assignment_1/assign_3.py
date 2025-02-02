@@ -1,6 +1,6 @@
 unique_words = set()
 
-file = open(r'D:\PythonFiles\Assignment_1\amth.txt')
+file = open(r'D:\PythonFiles\AMTH-450\Assignment_1\amth.txt')
 for line in file:  # Read line by line
         line = line.rstrip()
         words = line.split()
